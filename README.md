@@ -1,6 +1,6 @@
 # Calmet
 
-Calmet is a Go library created by a student for self-learning purposes in the fields of numerical analysis
+Calmet is a Go library created by a student for self-learning purposes in the fields of numerical methods
 and
 linear algebra. The library is divided into several packages, each focusing on a specific area of
 mathematics.
