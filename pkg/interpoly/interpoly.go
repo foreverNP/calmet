@@ -1,8 +1,8 @@
 package interpoly
 
 import (
-	"calmet/internal/node"
 	"fmt"
+	"github.com/foreverNP/calmet/pkg/node"
 )
 
 // NewtonPoly представляет интерполяционный полином Ньютона.

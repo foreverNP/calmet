@@ -37,17 +37,20 @@ func IntegrateTrapezoidal(f integrand, a, b float64, e float64, logFile *os.File
 
 	// Вычисляем приближенное значение интеграла с заданной точностью e с помощью метода Рунге
 	for math.Abs(rungeErrorTrapezoid(result, prevResult)) > e {
-		fmt.Fprintf(logFile, "h = %.10f, Q = %.10f, R = %.10f, n = %d\n",
-			(b-a)/float64(n), result, math.Abs(rungeErrorTrapezoid(result, prevResult)), n)
+		if logFile != nil {
+			fmt.Fprintf(logFile, "h = %.10f, Q = %.10f, R = %.10f, n = %d\n",
+				(b-a)/float64(n), result, math.Abs(rungeErrorTrapezoid(result, prevResult)), n)
+		}
 
 		prevResult = result
 		n *= 2
 		result = trapezoidalRule(f, a, b, n)
 	}
 
-	// Записываем результаты в лог-файл
-	fmt.Fprintf(logFile, "h = %.10f, Q = %.10f, R = %.10f, n = %d\n",
-		(b-a)/float64(n), result, math.Abs(rungeErrorTrapezoid(result, prevResult)), n)
+	if logFile != nil {
+		fmt.Fprintf(logFile, "h = %.10f, Q = %.10f, R = %.10f, n = %d\n",
+			(b-a)/float64(n), result, math.Abs(rungeErrorTrapezoid(result, prevResult)), n)
+	}
 
 	return result
 }

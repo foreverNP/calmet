@@ -1,7 +1,7 @@
 package interpoly
 
 import (
-	"calmet/internal/node"
+	"github.com/foreverNP/calmet/pkg/node"
 )
 
 // NewtonPolyBuilder строит полином Ньютона на основе заданных узлов интерполяции

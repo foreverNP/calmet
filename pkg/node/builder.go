@@ -37,3 +37,22 @@ func BuildChebyshevNodes(f func(float64) float64, a float64, b float64, n int) [
 
 	return nodes
 }
+
+// BuildGaussLegendreNodes строит узлы и веса для квадратурной формулы Гаусса-Лежандра
+// a и b - границы интервала, n - число узлов
+func BuildGaussLegendreNodes(a, b float64, n int) []Node {
+	if _, ok := gaussLegendreNodes[n]; !ok {
+		panic("integral: unknown number of nodes for Gauss-Legendre quadrature")
+	}
+
+	nodes := make([]Node, n)
+
+	copy(nodes, gaussLegendreNodes[n])
+
+	for i := range nodes {
+		nodes[i].X = (a+b)/2.0 + (b-a)/2.0*nodes[i].X
+		nodes[i].Y *= (b - a) / 2.0
+	}
+
+	return nodes
+}

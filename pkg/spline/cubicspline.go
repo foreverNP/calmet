@@ -1,9 +1,9 @@
 package spline
 
 import (
-	"calmet/internal/equations"
-	"calmet/internal/node"
 	"errors"
+	"github.com/foreverNP/calmet/pkg/equations"
+	"github.com/foreverNP/calmet/pkg/node"
 )
 
 // CubicSpline представляет кубическую сплайн-интерполяцию для заданного набора узлов.

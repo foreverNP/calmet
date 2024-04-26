@@ -42,17 +42,20 @@ func IntegrateSimpson(f integrand, a, b float64, e float64, logFile *os.File) fl
 
 	// Вычисляем приближенное значение интеграла с заданной точностью e с помощью метода Рунге
 	for math.Abs(rungeErrorSimpson(result, prevResult)) > e {
-		fmt.Fprintf(logFile, "h = %.10f, Q = %.10f, R = %.10f, n = %d\n",
-			(b-a)/float64(n), result, math.Abs(rungeErrorSimpson(result, prevResult)), n)
+		if logFile != nil {
+			fmt.Fprintf(logFile, "h = %.10f, Q = %.10f, R = %.10f, n = %d\n",
+				(b-a)/float64(n), result, math.Abs(rungeErrorSimpson(result, prevResult)), n)
+		}
 
 		prevResult = result
 		n *= 2
 		result = simpsonRule(f, a, b, n)
 	}
 
-	// Записываем результаты в лог-файл
-	fmt.Fprintf(logFile, "h = %.10f, Q = %.10f, R = %.10f, n = %d\n",
-		(b-a)/float64(n), result, math.Abs(rungeErrorSimpson(result, prevResult)), n)
+	if logFile != nil {
+		fmt.Fprintf(logFile, "h = %.10f, Q = %.10f, R = %.10f, n = %d\n",
+			(b-a)/float64(n), result, math.Abs(rungeErrorSimpson(result, prevResult)), n)
+	}
 
 	return result
 }

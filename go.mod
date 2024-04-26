@@ -1,1 +1,1 @@
-module calmet
+module "github.com/foreverNP/calmet"
